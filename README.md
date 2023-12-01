@@ -1,3 +1,3 @@
 # Liver-Cirrhosis-Prediction-System
 Know your Liver Better...
-![Liver-Cirrhosis-Prediction-System](Background.png)
+![Liver-Cirrhosis-Prediction-System](LiverCirrhosisPredicitonSystem.png)
