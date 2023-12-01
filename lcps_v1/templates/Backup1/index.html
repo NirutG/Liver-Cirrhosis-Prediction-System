@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block title %}
+INDEX
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>STAGE PREDICTION</h1>
+            <button><a href="{% url 'stage_prediction' %}">STAGE PREDICTION</a></button>
+        </div>
+        <div class="col-sm-6">
+            <h1>SURVIVAL PREDICTION</h1>
+            <button><a href="{% url 'survival_prediction' %}">SURVIVAL PREDICTION</a></button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

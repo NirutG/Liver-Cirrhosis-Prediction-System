@@ -1,0 +1,216 @@
+{% block body %}
+{%load static%}
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Stage Predictor</title>
+    
+    <!-- Icons font CSS-->
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css'  %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css'  %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'vendor/select2/select2.min.css'  %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/datepicker/daterangepicker.css'  %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/main.css'%}" rel="stylesheet" media="all">
+
+    <style>
+        .row {
+        display: flex;
+        flex-wrap: wrap;
+        }
+    
+        .row-space {
+        justify-content: space-between;
+        }
+    
+        .col-2 {
+          flex: 1; /* Use flex-grow: 1 for dynamic width */
+          margin-right: 20px; /* Adjusted margin between columns */
+        }
+    
+        @media (max-width: 767px) {
+        .col-2 {
+            width: 100%;
+            margin-right: 0px; /* Remove margin for full width on smaller screens */
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title"><center>Stage Predictor</center></h2>
+                    <form method="POST" onsubmit="return validateForm()">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label" >{{input_form.input1.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Serum bilirubin level in milligrams per deciliter (mg/dl), a measure of liver function and the breakdown of red blood cells.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input1.field.widget.input_type }}" required name="{{ input_form.input1.name}}">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input2.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="The number of days between the registration of the patient and the earlier of death, transplantation, or study analysis time in July 1986.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input2.field.widget.input_type }}" required name="{{ input_form.input2.name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input3.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Prothrombin time in seconds (s), a measure of the time it takes for blood to clot, often used to assess liver function.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input3.field.widget.input_type }}" required name="{{ input_form.input3.name}}">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input4.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Urine copper level in micrograms per day (ug/day), which can be relevant in the diagnosis of Wilson's disease, a genetic disorder affecting copper metabolism.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input4.field.widget.input_type }}" required name="{{ input_form.input4.name}}">
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input5.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Presence of swelling, indicated by N (no edema and no diuretic therapy), S (edema present without diuretics, or edema resolved by diuretics), or Y (edema despite diuretic therapy).">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input5.field.widget.input_type }}" required name="{{ input_form.input5.name}}">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input6.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Histologic stage of disease, typically graded from 1 to 4, indicating the severity or extent of the disease based on histological examination of tissues.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input6.field.widget.input_type }}" required name="{{ input_form.input6.name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input7.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Presence (Y) or absence (N) of abnormal fluid accumulation in the abdominal cavity, often associated with liver disease..">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input7.field.widget.input_type }}" required name="{{ input_form.input7.name }}">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input8.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Age of the patient">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input8.field.widget.input_type }}" required name="{{ input_form.input8.name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input9.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Albumin level in grams per deciliter (gm/dl), a protein produced by the liver that helps maintain blood volume and pressure.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input9.field.widget.input_type }}" required name="{{ input_form.input9.name}}">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input10.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="SGOT level in Units per milliliter (U/ml), an enzyme released into the blood when the liver or heart is damaged.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input10.field.widget.input_type }}" required name="{{ input_form.input10.name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input11.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Alkaline phosphatase level in Units per liter (U/liter), an enzyme that can be elevated in various liver and bone disorders.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input11.field.widget.input_type }}" required name="{{ input_form.input11.name}}">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">{{input_form.input12.label }}
+                                        <a href="#" class="info-icon" data-toggle="tooltip" title="Presence (Y) or absence (N) of spider angiomas, which are small, dilated blood vessels near the surface of the skin often associated with liver disease.">
+                                            <i class="fa fa-info-circle"></i> 
+                                        </a>
+                                    </label>
+                                    <input class="input--style-4" type="{{ input_form.input12.field.widget.input_type }}" required name="{{ input_form.input12.name }}">
+                                </div>
+                            </div>
+                        </div>
+                        <caption style="caption-side: bottom;">
+                            <div class="p-t-15">
+                                <button id="submit-button" class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                                <table>
+                                    <tr>
+                                        <td>OUTPUT =</td>
+                                        <td>{{ output }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </caption>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery/jquery.min.js'  %}"></script>
+    <!-- Vendor JS-->
+    <script src="{% static 'vendor/select2/select2.min.js'  %}"></script>
+    <script src="{% static 'vendor/datepicker/moment.min.js'  %}"></script>
+    <script src="{% static 'vendor/datepicker/daterangepicker.js' %}"></script>
+
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js' %}"></script>

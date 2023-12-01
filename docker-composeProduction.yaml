@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  web:
+    command: python3 manage.py runserver 0.0.0.0:80
+    image: nirutg/lcps_v1:deploy4.0
+    # build:
+    #   context: .
+    #   dockerfile: .Dockerfile
+    # ports:
+    #   - 8000:80
+    environment:
+      - HOST=0.0.0.0
+      - PORT=80
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.web-<foldername>.loadbalancer.server.port=80
+      - traefik.http.routers.web-<foldername>.rule=Host(`<foldername>.ml2023.cs.ait.ac.th`)  # Replace yourdomain.com with your actual domain
+      - traefik.http.routers.web-<foldername>.tls=true
+      - traefik.http.routers.web-<foldername>.tls.certresolver=production
+      - traefik.http.routers.web-<foldername>.entrypoints=websecure
+    networks:
+      - default
+      - traefik_default
+
+# Keep it like this too.
+networks:
+  default:
+  traefik_default:
+    external: true
